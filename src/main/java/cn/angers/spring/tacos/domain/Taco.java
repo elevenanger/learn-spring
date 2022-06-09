@@ -1,7 +1,9 @@
 package cn.angers.spring.tacos.domain;
 
 import lombok.Data;
+import org.springframework.data.relational.core.mapping.Table;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.util.Date;
@@ -13,7 +15,11 @@ import java.util.List;
  * @description : taco 领域类
  */
 @Data
+@Entity
 public class Taco {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     private Date createdDate = new Date();
@@ -22,6 +28,7 @@ public class Taco {
     @Size(min=3,message = "长度至少三位")
     private String name;
     @NotNull
+    @ManyToMany
     @Size(min = 1,message = "至少选择一个浇头")
     private List<Ingredient> ingredients;
 }

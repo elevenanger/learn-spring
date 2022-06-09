@@ -1,7 +1,9 @@
 package cn.angers.spring.tacos.controller;
 
+import cn.angers.spring.tacos.data.OrderRepository;
 import cn.angers.spring.tacos.domain.TacoOrder;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +25,13 @@ import javax.validation.Valid;
 @SessionAttributes("tacoOrder")
 public class OrderController {
 
+    private OrderRepository repository;
+
+    @Autowired
+    public OrderController(OrderRepository repository) {
+        this.repository = repository;
+    }
+
     @GetMapping("/current")
     public String orderForm() {
         return "orderForm";
@@ -39,6 +48,8 @@ public class OrderController {
     public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus status){
         if (errors.hasErrors()) return "orderForm";
         log.info("Order Submitted : {} " , order);
+        // 存储用户提交的数据
+        repository.save(order);
         /*
         订单完成
         会话结束
