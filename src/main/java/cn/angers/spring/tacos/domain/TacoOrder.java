@@ -1,5 +1,6 @@
 package cn.angers.spring.tacos.domain;
 
+import cn.angers.spring.tacos.User;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -74,4 +75,11 @@ public class TacoOrder implements Serializable {
     public void addTaco(Taco taco){
         tacos.add(taco);
     }
+
+    /*
+    使用 @ManyToOne 注解
+    声明与另一个实体之间的关系
+     */
+    @ManyToOne
+    private User user;
 }

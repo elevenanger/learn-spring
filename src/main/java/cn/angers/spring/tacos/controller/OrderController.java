@@ -1,9 +1,11 @@
 package cn.angers.spring.tacos.controller;
 
+import cn.angers.spring.tacos.User;
 import cn.angers.spring.tacos.data.OrderRepository;
 import cn.angers.spring.tacos.domain.TacoOrder;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 
 import javax.validation.Valid;
+import java.security.Principal;
 
 /**
  * @author : liuanglin
@@ -45,9 +48,18 @@ public class OrderController {
      * @return 订单完成 重定向
      */
     @PostMapping
-    public String processOrder(@Valid TacoOrder order, Errors errors, SessionStatus status){
+    public String processOrder(@Valid TacoOrder order, Errors errors,
+                               SessionStatus status,
+                               /*
+                               处理订单信息
+                               需要校验订单与提交订单的用户是否匹配
+                               校验用户的身份信息
+                               @AuthenticationPrincipal 注解 User 对象作为身份认证的主体
+                                */
+                               @AuthenticationPrincipal User user){
         if (errors.hasErrors()) return "orderForm";
         log.info("Order Submitted : {} " , order);
+        order.setUser(user);
         // 存储用户提交的数据
         repository.save(order);
         /*

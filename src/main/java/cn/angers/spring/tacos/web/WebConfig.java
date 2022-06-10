@@ -22,5 +22,7 @@ public class WebConfig implements WebMvcConfigurer {
         替代 HomeController
          */
         registry.addViewController("/").setViewName("home");
+        // 登录页面视图 controller
+        registry.addViewController("/login");
     }
 }

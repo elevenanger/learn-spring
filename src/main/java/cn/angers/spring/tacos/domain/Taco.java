@@ -6,6 +6,7 @@ import org.springframework.data.relational.core.mapping.Table;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
  */
 @Data
 @Entity
-public class Taco {
+public class Taco implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
