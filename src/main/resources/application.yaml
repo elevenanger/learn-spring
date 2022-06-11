@@ -1,4 +1,29 @@
 spring:
   datasource:
-    generate-unique-name: false
-    name: tacocloud
+    url: jdbc:postgresql://localhost:5432/taco_cloud
+    username: anger
+    password : anger
+    driver-class-name: org.postgresql.Driver
+    schema:
+    - shema.sql
+    data:
+    - data.sql
+
+server:
+  port: 8443
+  ssl:
+    key-store: classpath:mykeys.jks
+    key-store-password: angerin
+    key-password: angerin
+
+logging:
+  file:
+    path: /var/logs/
+    file: TacoCloud.log
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+
+taco:
+  orders:
+    pageSize: 10

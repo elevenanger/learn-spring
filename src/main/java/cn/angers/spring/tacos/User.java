@@ -8,10 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Collection;
 import java.util.Collections;
 
@@ -26,6 +23,7 @@ import java.util.Collections;
 @Data
 @NoArgsConstructor(access = AccessLevel.PRIVATE,force = true)
 @RequiredArgsConstructor
+@Table(name = "user_info")
 public class User implements UserDetails {
     private static final long serialVersionUID = 1L;
 
@@ -40,7 +38,7 @@ public class User implements UserDetails {
     private final String city;
     private final String state;
     private final String zip;
-    private final String phoneNumber;
+    private final String phonenumber;
 
     /**
      * 定义此类用户拥有的权限

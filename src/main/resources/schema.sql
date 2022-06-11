@@ -1,5 +1,5 @@
 create table if not exists taco_order (
-    id identity primary key,
+    id serial primary key,
     delivery_name varchar(50) not null,
     delivery_street varchar(50) not null,
     delivery_city varchar(50) not null,
@@ -12,7 +12,7 @@ create table if not exists taco_order (
 );
 
 create table if not exists Taco (
-    id identity,
+    id serial PRIMARY KEY,
     name varchar(50) not null,
     taco_order bigint not null,
     taco_order_key bigint not null,
@@ -30,6 +30,19 @@ create table if not exists ingredient (
     name varchar(25) not null,
     type varchar(10) not null
 );
+
+create table if not exists user (
+	id serial PRIMARY KEY,
+	username VARCHAR(20) NOTNULL,
+	password VARCHAR(255) NOTNULL,
+	fullname VARCHAR(30) NOTNULL,
+	street VARCHAR(50) NOTNULL,
+	city VARCHAR(50) NOTNULL,
+	STATE VARCHAR(50) NOTNULL,
+	zip VARCHAR(20) NOTNULL,
+	phonenumber VARCHAR(20) NOTNULL
+);
+
 
 --alter table taco add foreign key (taco_order) references taco_order(id);
 --alter table ingredient_ref add foreign key (ingredient) references ingredient(id);

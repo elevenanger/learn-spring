@@ -1,7 +1,6 @@
 package cn.angers.spring.tacos.domain;
 
 import lombok.Data;
-import org.springframework.data.relational.core.mapping.Table;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

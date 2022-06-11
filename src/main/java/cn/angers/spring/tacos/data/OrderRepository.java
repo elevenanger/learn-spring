@@ -1,6 +1,8 @@
 package cn.angers.spring.tacos.data;
 
+import cn.angers.spring.tacos.User;
 import cn.angers.spring.tacos.domain.TacoOrder;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.CrudRepository;
 
 import java.util.List;
@@ -22,4 +24,6 @@ public interface OrderRepository extends CrudRepository<TacoOrder,Long> {
     生成对应的实现
      */
     List<TacoOrder> findByDeliveryZip(String deliveryZip);
+
+    List<TacoOrder> findByUserOrderByCreatedDateDesc(User user, Pageable pageable);
 }

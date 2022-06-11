@@ -81,9 +81,6 @@ public class SecurityConfig {
             并准备添加一些新的 http 配置
              */
             .and()
-                .oauth2Login()
-                    .loginPage("/login")
-            .and()
                 .logout()
                     .logoutSuccessUrl("/")
             .and()
