@@ -27,6 +27,7 @@ public class Taco implements Serializable {
     @NotNull
     @Size(min=3,message = "长度至少三位")
     private String name;
+
     @NotNull
     @ManyToMany
     @Size(min = 1,message = "至少选择一个浇头")

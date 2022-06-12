@@ -13,3 +13,6 @@ insert into Ingredient (id, name, type) values ('CHED', 'Cheddar', 'CHEESE');
 insert into Ingredient (id, name, type) values ('JACK', 'Monterrey Jack', 'CHEESE');
 insert into Ingredient (id, name, type) values ('SLSA', 'Salsa', 'SAUCE');
 insert into Ingredient (id, name, type) values ('SRCR', 'Sour Cream', 'SAUCE');
+
+-- 创建 hibernate sequence
+CREATE SEQUENCE hibernate_sequence MINVALUE 1000 MAXVALUE 100000000 START WITH 1001 INCREMENT 1 CACHE 20;

@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 
 /**
@@ -25,6 +27,12 @@ public class Ingredient {
     @Id
     private final String id;
     private final String name;
+    /*
+    枚举类型存储时要声明 JPA 对应的类型
+    默认为 ORDINAL
+    声明为 String 则取 enum.value().name()
+     */
+    @Enumerated(EnumType.STRING)
     private final Type type;
     public enum Type {WRAP, PROTEIN, VEGGIES, CHEESE, SAUCE}
 }
