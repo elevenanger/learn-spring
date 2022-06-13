@@ -1,0 +1,14 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taco_cloud
+    username: anger
+    password : anger
+    driver-class-name: org.postgresql.Driver
+
+server:
+  port: 9000
+
+logging:
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
