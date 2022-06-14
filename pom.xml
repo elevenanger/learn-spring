@@ -13,6 +13,7 @@
 	<modules>
 		<module>taco-cloud</module>
 		<module>taco-auth-server</module>
+		<module>client</module>
 	</modules>
 
 </project>

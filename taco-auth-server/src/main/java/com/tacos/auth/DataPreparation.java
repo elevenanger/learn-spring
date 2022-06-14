@@ -8,6 +8,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import java.util.Random;
+
 /**
  * @author : liuanglin
  * @date : 2022/6/13 18:26
@@ -21,7 +23,8 @@ public class DataPreparation {
 
     @Bean
     public ApplicationRunner dataLoader(PasswordEncoder encoder) {
+        Random random = new Random(10);
         return args -> userRepository.save(
-            new User("anger", encoder.encode("123456"), "ROLE_ADMIN"));
+            new User("anger" + random.nextInt(1000), encoder.encode("123456"), "ROLE_ADMIN"));
     }
 }

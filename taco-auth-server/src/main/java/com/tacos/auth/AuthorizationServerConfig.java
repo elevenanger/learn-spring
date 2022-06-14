@@ -68,7 +68,7 @@ public class AuthorizationServerConfig {
                 .authorizationGrantType(AuthorizationGrantType.REFRESH_TOKEN)
                 // 授权完成后的重定向地址
                 .redirectUri(
-                    "http://localhost:9000/login/oauth2/code/taco-client")
+                    "http://localhost:9090/login/oauth2/code/taco-client")
                 // 客户端允许的访问范围
                 .scope("writeIngredients")
                 .scope("deleteIngredients")

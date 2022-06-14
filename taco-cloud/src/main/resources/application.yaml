@@ -1,0 +1,45 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/taco_cloud
+    username: anger
+    password : anger
+    driver-class-name: org.postgresql.Driver
+    schema:
+    - shema.sql
+    data:
+    - data.sql
+  # spring data rest api base path
+  data:
+    rest:
+      base-path: /data-api
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:9000/oauth2/jwks
+    kafka:
+      bootstrap-servers:
+      - localhost:9092
+      producer:
+        keySerializer: org.springframework.kafka.support.serializer.JsonSerializer
+        valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+      consumer:
+        value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+        group-id: taco-cloud-consumer
+        properties:
+          spring.json.trusted.packages: tacos
+
+server:
+  port: 8091
+
+logging:
+  file:
+    path: /var/logs/
+    file: TacoCloud.log
+  level:
+    root: INFO
+    org.springframework.security: DEBUG
+
+taco:
+  orders:
+    pageSize: 10

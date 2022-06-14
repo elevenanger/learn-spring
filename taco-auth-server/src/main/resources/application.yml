@@ -12,3 +12,9 @@ logging:
   level:
     root: INFO
     org.springframework.security: DEBUG
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'

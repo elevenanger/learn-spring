@@ -1,0 +1,23 @@
+server:
+  port: 9090
+
+spring:
+  security:
+    oauth2:
+      client:
+        registration:
+          taco-client:
+            provider: tacocloud
+            client-id: taco-client
+            client-secret: secret
+            authorization-grant-type: authorization_code
+            redirect-uri: "http://127.0.0.1:9090/login/oauth2/code/{registrationId}"
+            scope: writeIngredients,deleteIngredients,openid
+        provider:
+          tacocloud:
+            issuer-uri: http://authserver:9000
+            authorization-uri: http://authserver:9000/oauth2/authorize
+            token-uri: http://authserver:9000/oauth2/token
+            jwk-set-uri: http://authserver:9000/oauth2/jwks
+            user-info-uri: http://authserver:9000/userinfo
+            user-name-attribute: sub
