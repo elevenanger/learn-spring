@@ -14,6 +14,7 @@
 		<module>taco-cloud</module>
 		<module>taco-auth-server</module>
 		<module>client</module>
+		<module>integration</module>
 	</modules>
 
 </project>

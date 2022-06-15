@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 @Slf4j
 public class UserMessageListener {
 
-    @KafkaListener(topics = "tacocloud.user.topic")
-    public void handle(User user, ConsumerRecord<String,User> record){
+    @KafkaListener(groupId = "taco-cloud-consumer", topics = "tacocloud.user.topic")
+    public void handle(String user, ConsumerRecord<String,String> record){
         log.info("收到用户注册信息 {} ", user);
         StringBuilder recordBuilder = new StringBuilder("记录详情：\n\t");
         recordBuilder

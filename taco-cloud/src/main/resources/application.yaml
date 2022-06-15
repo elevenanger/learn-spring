@@ -18,16 +18,16 @@ spring:
         jwt:
           jwk-set-uri: http://localhost:9000/oauth2/jwks
     kafka:
-      bootstrap-servers:
-      - localhost:9092
       producer:
-        keySerializer: org.springframework.kafka.support.serializer.JsonSerializer
-        valueSerializer: org.springframework.kafka.support.serializer.JsonSerializer
+        bootstrap-servers:
+        - localhost:9092
+        key-serializer: org.apache.kafka.common.serialization.StringSerializer
+        value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       consumer:
+        bootstrap-servers:
+        - localhost:9092
+        key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
         value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
-        group-id: taco-cloud-consumer
-        properties:
-          spring.json.trusted.packages: tacos
 
 server:
   port: 8091
