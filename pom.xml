@@ -15,6 +15,7 @@
 		<module>taco-auth-server</module>
 		<module>client</module>
 		<module>integration</module>
+		<module>reactor</module>
 	</modules>
 
 </project>
