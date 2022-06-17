@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import reactor.core.publisher.Flux;
 import reactor.test.StepVerifier;
 
+import java.time.Duration;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -113,14 +114,43 @@ class CreateFluxTests {
             .expectNext(2)
             .verifyComplete();
     }
+
+    /**
+     * 使用 Flux.interval() 创建 flux 对象
+     */
+    @Test
+    void createFluxWithInterval() {
+        Flux<Long> intervalFlux =
+            // 时间间隔
+            Flux.interval(Duration.ofSeconds(1))
+                // 限制生成元素的数量
+                .take(3);
+        intervalFlux.map(FluxHelper::new).subscribe(Runnable::run);
+        StepVerifier.create(intervalFlux)
+            .expectNext(0L)
+            .expectNext(1L)
+            .expectNext(2L)
+            .verifyComplete();
+    }
 }
 
 @Data
 class FluxHelper implements Runnable {
-    private final int i;
+    private int i;
+    private long j;
+
+    public FluxHelper(int i) {
+        this.i = i;
+        System.out.println(i);
+    }
+
+    public FluxHelper(long j) {
+        this.j = j;
+        System.out.println(j);
+    }
 
     @Override
     public void run() {
-        System.out.println(Thread.currentThread().getName() + ", " + this.getI());
+        System.out.println(Thread.currentThread().getName());
     }
 }
