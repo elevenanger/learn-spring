@@ -16,6 +16,7 @@
 		<module>client</module>
 		<module>integration</module>
 		<module>reactor</module>
+		<module>flux</module>
 	</modules>
 
 </project>
