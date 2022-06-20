@@ -43,3 +43,20 @@ logging:
 taco:
   orders:
     pageSize: 10
+
+# 设置 spring boot actuator
+management:
+  endpoints:
+    web:
+      base-path: /actuator
+      # 设置对外暴露的端点
+      exposure:
+        include: '*'
+        exclude: heapdump
+  endpoint:
+    health:
+      show-details: always
+
+info:
+  github:
+    repo: learn-spring
